@@ -9,15 +9,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { Icons } from '@/components/ui/icons';
-import { Google } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { useAuth } from '@/contexts/AuthContext';
 
 const Signup = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { signInWithGoogle } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -60,27 +57,6 @@ const Signup = () => {
     }
   };
 
-  const handleGoogleSignup = async () => {
-    setIsLoading(true);
-    try {
-      await signInWithGoogle();
-      toast({
-        title: "Success!",
-        description: "You've signed up with Google successfully.",
-      });
-      navigate('/');
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Failed to sign up with Google",
-        description: "An error occurred during Google authentication.",
-      });
-      console.error('Error signing up with Google:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -117,7 +93,7 @@ const Signup = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">{t('auth.confirmPassword')}</Label>
+                  <Label htmlFor="confirmPassword">Confirm Password</Label>
                   <Input
                     id="confirmPassword"
                     type="password"
@@ -137,27 +113,6 @@ const Signup = () => {
                   {t('auth.signup')}
                 </Button>
               </form>
-
-              <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">
-                    {t('auth.orContinueWith')}
-                  </span>
-                </div>
-              </div>
-
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={handleGoogleSignup}
-                disabled={isLoading}
-              >
-                <Google className="mr-2 h-4 w-4" />
-                {t('auth.continueWithGoogle')}
-              </Button>
             </CardContent>
             <CardFooter className="flex justify-center">
               <p className="text-sm text-muted-foreground">
