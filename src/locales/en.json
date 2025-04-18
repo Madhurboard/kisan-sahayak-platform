@@ -1,4 +1,3 @@
-
 {
   "app": {
     "name": "Kisan Sahayak",
@@ -116,6 +115,14 @@
     "savedItems": "Saved Items",
     "myPosts": "My Posts",
     "settings": "Settings"
+  },
+  "market": {
+    "title": "Market Advisor",
+    "description": "Get real-time crop prices and market insights",
+    "searchPlaceholder": "Search for crops...",
+    "search": "Search",
+    "pricePerQuintal": "/quintal",
+    "priceChange": "from previous"
   },
   "footer": {
     "aboutUs": "About Us",

@@ -10,6 +10,7 @@ import Crops from "./pages/Crops";
 import Community from "./pages/Community";
 import Schemes from "./pages/Schemes";
 import NotFound from "./pages/NotFound";
+import Market from "./pages/Market";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const queryClient = new QueryClient();
@@ -26,9 +27,9 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/weather" element={<Weather />} />
             <Route path="/crops" element={<Crops />} />
+            <Route path="/market" element={<Market />} />
             <Route path="/community" element={<Community />} />
             <Route path="/schemes" element={<Schemes />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </TooltipProvider>
