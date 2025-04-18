@@ -21,10 +21,11 @@ const mockSchemes = [
       'All landholding farmers',
       'Subject to certain exclusions'
     ],
-    deadline: undefined, // Ongoing scheme
+    deadline: undefined,
     regions: ['All India'],
     benefits: 'Direct income support to farmer families',
-    fundingAmount: '₹6,000 per year'
+    fundingAmount: '₹6,000 per year',
+    link: 'https://pmkisan.gov.in'
   },
   {
     id: '2',
@@ -37,15 +38,16 @@ const mockSchemes = [
       'Oral lessees',
       'Self-help groups'
     ],
-    deadline: undefined, // Ongoing scheme
+    deadline: undefined,
     regions: ['All India'],
     benefits: 'Access to short-term loans at subsidized interest rates',
-    fundingAmount: 'Up to ₹3 lakh'
+    fundingAmount: 'Up to ₹3 lakh',
+    link: 'https://agricoop.nic.in/en/kcc'
   },
   {
     id: '3',
     title: 'Pradhan Mantri Fasal Bima Yojana',
-    description: 'Crop insurance scheme to provide financial support to farmers suffering crop loss/damage',
+    description: 'Crop insurance for financial support in case of crop loss/damage',
     category: 'insurance' as const,
     eligibility: [
       'All farmers including sharecroppers and tenant farmers',
@@ -53,24 +55,24 @@ const mockSchemes = [
     ],
     deadline: 'Seasonal application periods',
     regions: ['All India'],
-    benefits: 'Insurance coverage and financial support in case of crop failure due to natural calamities'
+    benefits: 'Insurance coverage and financial support for crop failure',
+    link: 'https://pmfby.gov.in'
   },
   {
     id: '4',
     title: 'Soil Health Card Scheme',
-    description: 'Provides information to farmers on nutrient status of their soil',
+    description: 'Provides farmers with info on nutrient status of soil',
     category: 'subsidy' as const,
-    eligibility: [
-      'All farmers'
-    ],
-    deadline: undefined, // Ongoing scheme
+    eligibility: ['All farmers'],
+    deadline: undefined,
     regions: ['All India'],
-    benefits: 'Soil health assessment and recommend appropriate dosage of nutrients'
+    benefits: 'Soil health analysis and nutrient guidance',
+    link: 'https://soilhealth.dac.gov.in'
   },
   {
     id: '5',
     title: 'Agricultural Skill Council of India - Skill Development',
-    description: 'Training for farmers on modern agricultural techniques',
+    description: 'Training on modern agricultural techniques',
     category: 'training' as const,
     eligibility: [
       'Farmers',
@@ -79,23 +81,26 @@ const mockSchemes = [
     ],
     deadline: 'Rolling applications',
     regions: ['All India'],
-    benefits: 'Skills development, certification, and improved employment opportunities in agricultural sector'
+    benefits: 'Skill development and certification for improved agri jobs',
+    link: 'https://www.asci-india.com'
   },
   {
     id: '6',
     title: 'National Mission for Sustainable Agriculture',
-    description: 'Promotes sustainable agriculture through water use efficiency, soil health management',
+    description: 'Supports sustainable agriculture practices and climate resilience',
     category: 'subsidy' as const,
     eligibility: [
       'All farmers',
       'Focus on rainfed areas'
     ],
-    deadline: undefined, // Ongoing scheme
+    deadline: undefined,
     regions: ['All India'],
-    benefits: 'Support for climate-resilient agriculture and efficient use of resources',
-    fundingAmount: 'Variable subsidies for different components'
+    benefits: 'Support for water, soil, and climate-resilient agriculture',
+    fundingAmount: 'Variable subsidies for different components',
+    link: 'https://nmsa.dac.gov.in'
   }
 ];
+
 
 const Schemes = () => {
   const { t } = useTranslation();
@@ -188,6 +193,8 @@ const Schemes = () => {
                       regions={scheme.regions}
                       benefits={scheme.benefits}
                       fundingAmount={scheme.fundingAmount}
+                      link={scheme.link}
+
                     />
                   ))}
                 </div>
@@ -208,6 +215,7 @@ const Schemes = () => {
                         regions={scheme.regions}
                         benefits={scheme.benefits}
                         fundingAmount={scheme.fundingAmount}
+                        link={scheme.link}
                       />
                     ))}
                 </div>
@@ -228,6 +236,8 @@ const Schemes = () => {
                         regions={scheme.regions}
                         benefits={scheme.benefits}
                         fundingAmount={scheme.fundingAmount}
+                        link={scheme.link}
+
                       />
                     ))}
                 </div>
@@ -248,6 +258,8 @@ const Schemes = () => {
                         regions={scheme.regions}
                         benefits={scheme.benefits}
                         fundingAmount={scheme.fundingAmount}
+                        link={scheme.link}
+
                       />
                     ))}
                 </div>
@@ -268,6 +280,8 @@ const Schemes = () => {
                         regions={scheme.regions}
                         benefits={scheme.benefits}
                         fundingAmount={scheme.fundingAmount}
+                        link={scheme.link}
+
                       />
                     ))}
                 </div>

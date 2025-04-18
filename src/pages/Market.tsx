@@ -1,19 +1,18 @@
-
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, TrendingDown, Search, Info } from "lucide-react";
+import { TrendingUp, TrendingDown, Info, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/Navbar"; // Import Navbar component
-import Footer from "@/components/Footer"; // Import Footer component
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-// Define the CropPrice type
 type CropPrice = {
   name: string;
   currentPrice: number;
   previousPrice: number;
   trend: "up" | "down" | "stable";
+  imageUrl: string;
 };
 
 const MarketAdvisor = () => {
@@ -21,11 +20,50 @@ const MarketAdvisor = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const cropPrices: CropPrice[] = [
-    { name: "Rice", currentPrice: 2500, previousPrice: 2300, trend: "up" },
-    { name: "Wheat", currentPrice: 1800, previousPrice: 2000, trend: "down" },
-    { name: "Cotton", currentPrice: 5600, previousPrice: 5200, trend: "up" },
-    { name: "Sugarcane", currentPrice: 350, previousPrice: 350, trend: "stable" }
+    {
+      name: "Rice",
+      currentPrice: 2200,
+      previousPrice: 2100,
+      trend: "up",
+      imageUrl: "https://images.unsplash.com/photo-1602989106211-81de671c23a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      name: "Wheat",
+      currentPrice: 2100,
+      previousPrice: 2150,
+      trend: "down",
+      imageUrl: "https://images.unsplash.com/photo-1529511582893-2d7e684dd128?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      name: "Cotton",
+      currentPrice: 6200,
+      previousPrice: 6000,
+      trend: "up",
+      imageUrl: "https://images.unsplash.com/photo-1502395809857-fd80069897d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      name: "Sugarcane",
+      currentPrice: 340,
+      previousPrice: 340,
+      trend: "stable",
+      imageUrl: "https://images.unsplash.com/photo-1637335556827-bf5923d77f33?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      name: "Maize",
+      currentPrice: 2000,
+      previousPrice: 1950,
+      trend: "up",
+      imageUrl: "https://images.unsplash.com/photo-1693672843048-82d7c1a20974?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      name: "Soybean",
+      currentPrice: 4600,
+      previousPrice: 4700,
+      trend: "down",
+      imageUrl: "https://images.unsplash.com/photo-1562702076-c719c8796b8d?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
   ];
+  
 
   const getTrendIcon = (trend: CropPrice["trend"]) => {
     if (trend === "up") return <TrendingUp className="text-green-500" />;
@@ -72,6 +110,7 @@ const MarketAdvisor = () => {
                 {getTrendIcon(crop.trend)}
               </CardHeader>
               <CardContent>
+                <img src={crop.imageUrl} alt={crop.name} className="w-full h-40 object-cover mb-4 rounded" />
                 <div className="text-2xl font-bold mb-2">
                   ₹{crop.currentPrice}
                   <span className="text-sm text-muted-foreground">/quintal</span>

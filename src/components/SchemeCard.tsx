@@ -15,6 +15,7 @@ interface SchemeCardProps {
   regions: string[];
   benefits: string;
   fundingAmount?: string;
+  link?: string; // <-- Add this line
   className?: string;
 }
 
@@ -27,6 +28,7 @@ const SchemeCard = ({
   regions,
   benefits,
   fundingAmount,
+  link,
   className
 }: SchemeCardProps) => {
   const { t } = useTranslation();
@@ -113,14 +115,18 @@ const SchemeCard = ({
       </CardContent>
       
       <CardFooter className="flex gap-3">
-        <Button asChild className="flex-1">
-          <a href="#" target="_blank" rel="noopener noreferrer">
-            {t('schemes.applyNow')}
-          </a>
-        </Button>
-        <Button variant="outline" className="flex-1">
-          {t('schemes.viewDetails')}
-        </Button>
+      {link ? (
+  <Button asChild className="flex-1">
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      {t('schemes.applyNow')}
+    </a>
+  </Button>
+) : (
+  <Button disabled className="flex-1">
+    {t('schemes.applyNow')}
+  </Button>
+)}
+
       </CardFooter>
     </Card>
   );

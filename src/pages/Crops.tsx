@@ -23,7 +23,7 @@ const mockCropRecommendations = [
     temperature: '20-35°C',
     seasonality: ['Kharif'],
     regions: ['Punjab', 'Haryana', 'Uttar Pradesh'],
-    imageUrl: 'https://images.unsplash.com/photo-1536054580270-0d1ac7cea3c5?w=800&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1602989106211-81de671c23a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     cropName: 'Wheat',
@@ -33,7 +33,7 @@ const mockCropRecommendations = [
     temperature: '15-25°C',
     seasonality: ['Rabi'],
     regions: ['Punjab', 'Haryana', 'Uttar Pradesh', 'Madhya Pradesh'],
-    imageUrl: 'https://images.unsplash.com/photo-1530155939540-0256b27a12f8?w=800&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1529511582893-2d7e684dd128?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     cropName: 'Cotton',
@@ -43,7 +43,7 @@ const mockCropRecommendations = [
     temperature: '20-30°C',
     seasonality: ['Kharif'],
     regions: ['Gujarat', 'Maharashtra', 'Punjab'],
-    imageUrl: 'https://images.unsplash.com/photo-1576295413501-9b5d81314b19?w=800&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1502395809857-fd80069897d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     cropName: 'Sugarcane',
@@ -53,7 +53,7 @@ const mockCropRecommendations = [
     temperature: '20-35°C',
     seasonality: ['Year-round'],
     regions: ['Uttar Pradesh', 'Maharashtra', 'Karnataka'],
-    imageUrl: 'https://images.unsplash.com/photo-1598933620103-98a905098b31?w=800&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1637335556827-bf5923d77f33?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     cropName: 'Maize',
@@ -63,7 +63,7 @@ const mockCropRecommendations = [
     temperature: '20-30°C',
     seasonality: ['Kharif', 'Rabi'],
     regions: ['Karnataka', 'Andhra Pradesh', 'Telangana'],
-    imageUrl: 'https://images.unsplash.com/photo-1590599652694-1250fac26d14?w=800&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1693672843048-82d7c1a20974?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   },
   {
     cropName: 'Soybean',
@@ -73,7 +73,7 @@ const mockCropRecommendations = [
     temperature: '20-30°C',
     seasonality: ['Kharif'],
     regions: ['Madhya Pradesh', 'Maharashtra', 'Rajasthan'],
-    imageUrl: 'https://images.unsplash.com/photo-1599497967850-615cdb19e9ee?w=800&auto=format&fit=crop'
+    imageUrl: 'https://images.unsplash.com/photo-1562702076-c719c8796b8d?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
   }
 ];
 

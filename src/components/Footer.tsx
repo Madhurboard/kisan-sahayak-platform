@@ -160,7 +160,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground">
                 <PhoneCall size={18} />
-                <span>+91 1234567890</span>
+                <span>+91 1800-180-1551</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail size={18} />
@@ -168,7 +168,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>123 Agricultural Hub, Tech Park, New Delhi, India</span>
+                <span>MIT ADT UNIVERSITY</span>
               </li>
             </ul>
           </div>
