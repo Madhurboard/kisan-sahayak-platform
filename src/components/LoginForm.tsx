@@ -10,12 +10,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import { GithubIcon } from 'lucide-react'; // Using GithubIcon as a replacement for Google
 
 const LoginForm = () => {
   const { t } = useTranslation();
-  const { login, loginWithGoogle } = useAuth();
+  const { signInWithGoogle, currentUser } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -27,12 +27,13 @@ const LoginForm = () => {
     setIsLoading(true);
     
     try {
-      await login(email, password);
+      // Using the currentUser for now since login method is not available
+      // This is a placeholder - in a real app, we'd call an actual login function
+      console.log("Login attempt with:", email, password);
       toast({
-        title: "Success!",
-        description: "You've been logged in successfully.",
+        title: "Info",
+        description: "Direct email/password login is not implemented yet.",
       });
-      navigate('/');
     } catch (error) {
       toast({
         variant: "destructive",
@@ -49,7 +50,7 @@ const LoginForm = () => {
     setIsLoading(true);
     
     try {
-      await loginWithGoogle();
+      await signInWithGoogle();
       toast({
         title: "Success!",
         description: "You've been logged in with Google successfully.",
