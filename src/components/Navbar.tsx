@@ -116,10 +116,10 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-2">
               <Button asChild variant="ghost" size="sm" className="hidden md:flex">
-                <Link to="/login">{t('nav.login')}</Link>
+                <Link to="/login">{t('auth.login')}</Link>
               </Button>
               <Button asChild size="sm" className="hidden md:flex">
-                <Link to="/signup">{t('nav.signup')}</Link>
+                <Link to="/signup">{t('auth.signup')}</Link>
               </Button>
             </div>
           )}
