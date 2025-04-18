@@ -1,0 +1,128 @@
+
+{
+  "app": {
+    "name": "किसान सहाय्यक",
+    "tagline": "ज्ञानाने शेतकऱ्यांचे सक्षमीकरण"
+  },
+  "nav": {
+    "home": "मुख्यपृष्ठ",
+    "weather": "हवामान",
+    "crops": "पीक सल्लागार",
+    "prices": "बाजारभाव",
+    "community": "समुदाय",
+    "schemes": "सरकारी योजना",
+    "profile": "माझे प्रोफाइल",
+    "login": "लॉगिन",
+    "logout": "लॉगआउट"
+  },
+  "auth": {
+    "login": "लॉगिन",
+    "signup": "नोंदणी करा",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "forgotPassword": "पासवर्ड विसरलात?",
+    "orContinueWith": "किंवा यासह पुढे जा",
+    "google": "गूगल",
+    "alreadyHaveAccount": "आधीपासून खाते आहे?",
+    "dontHaveAccount": "खाते नाही?"
+  },
+  "home": {
+    "welcome": "किसान सहाय्यक मध्ये आपले स्वागत आहे",
+    "welcomeMessage": "कृषी अंतर्दृष्टी आणि समुदायासाठी आपले संपूर्ण व्यासपीठ",
+    "getStarted": "सुरू करा",
+    "featuredInsights": "विशेष अंतर्दृष्टी",
+    "weather": "हवामान अंदाज",
+    "cropAdvisor": "पीक शिफारसी",
+    "marketPrices": "बाजारभाव",
+    "community": "शेतकरी समुदाय",
+    "schemes": "सरकारी योजना"
+  },
+  "weather": {
+    "title": "हवामान अंदाज",
+    "today": "आज",
+    "tomorrow": "उद्या",
+    "nextDays": "पुढील 7 दिवस",
+    "temperature": "तापमान",
+    "humidity": "आर्द्रता",
+    "windSpeed": "वाऱ्याचा वेग",
+    "precipitation": "पाऊस",
+    "locationInput": "आपले स्थान प्रविष्ट करा",
+    "useCurrentLocation": "वर्तमान स्थान वापरा",
+    "searchLocation": "शोधा",
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "किमी/तास",
+    "mph": "मैल/तास",
+    "mm": "मिमी"
+  },
+  "crops": {
+    "title": "पीक सल्लागार",
+    "recommendation": "पीक शिफारसी",
+    "cropType": "पीक प्रकार",
+    "soilType": "मातीचा प्रकार",
+    "region": "प्रदेश",
+    "season": "हंगाम",
+    "calculateButton": "शिफारसी मिळवा",
+    "recommendedCrops": "शिफारस केलेली पिके",
+    "recommendedFertilizers": "शिफारस केलेली खते",
+    "irrigationTips": "सिंचन टिप्स",
+    "soilHealth": "मातीच्या आरोग्य टिप्स"
+  },
+  "forum": {
+    "title": "शेतकरी समुदाय",
+    "createPost": "पोस्ट करा",
+    "recentPosts": "अलीकडील पोस्ट",
+    "popularPosts": "लोकप्रिय पोस्ट",
+    "searchPosts": "पोस्ट शोधा...",
+    "filterByTopic": "विषयानुसार फिल्टर करा",
+    "filterByRegion": "प्रदेशानुसार फिल्टर करा",
+    "comments": "टिप्पण्या",
+    "replies": "प्रतिक्रिया",
+    "like": "आवडले",
+    "reply": "प्रतिक्रिया द्या",
+    "share": "शेअर करा",
+    "report": "तक्रार करा",
+    "postTitle": "पोस्ट शीर्षक",
+    "postContent": "पोस्ट सामग्री",
+    "uploadImage": "प्रतिमा अपलोड करा",
+    "submit": "सबमिट करा"
+  },
+  "schemes": {
+    "title": "सरकारी योजना",
+    "searchSchemes": "योजना शोधा...",
+    "filterByCategory": "श्रेणीनुसार फिल्टर करा",
+    "filterByRegion": "प्रदेशानुसार फिल्टर करा",
+    "allSchemes": "सर्व योजना",
+    "loans": "कर्ज",
+    "subsidies": "अनुदान",
+    "insurance": "विमा",
+    "training": "प्रशिक्षण",
+    "viewDetails": "तपशील पहा",
+    "applyNow": "आता अर्ज करा",
+    "eligibility": "पात्रता",
+    "benefits": "फायदे",
+    "documents": "आवश्यक कागदपत्रे",
+    "deadline": "अर्जाची अंतिम तारीख"
+  },
+  "profile": {
+    "title": "माझे प्रोफाइल",
+    "personalInfo": "वैयक्तिक माहिती",
+    "name": "नाव",
+    "email": "ईमेल",
+    "phone": "फोन",
+    "location": "स्थान",
+    "language": "भाषा",
+    "updateProfile": "प्रोफाइल अपडेट करा",
+    "savedItems": "जतन केलेले आयटम",
+    "myPosts": "माझे पोस्ट",
+    "settings": "सेटिंग्ज"
+  },
+  "footer": {
+    "aboutUs": "आमच्याबद्दल",
+    "contactUs": "संपर्क करा",
+    "termsOfService": "सेवा अटी",
+    "privacyPolicy": "गोपनीयता धोरण",
+    "helpCenter": "मदत केंद्र",
+    "copyright": "© 2025 किसान सहाय्यक. सर्व हक्क राखीव."
+  }
+}

@@ -1,0 +1,128 @@
+
+{
+  "app": {
+    "name": "Kisan Sahayak",
+    "tagline": "Empowering Farmers with Knowledge"
+  },
+  "nav": {
+    "home": "Home",
+    "weather": "Weather",
+    "crops": "Crop Advisor",
+    "prices": "Market Prices",
+    "community": "Community",
+    "schemes": "Govt. Schemes",
+    "profile": "My Profile",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "orContinueWith": "Or continue with",
+    "google": "Google",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?"
+  },
+  "home": {
+    "welcome": "Welcome to Kisan Sahayak",
+    "welcomeMessage": "Your complete platform for agricultural insights and community",
+    "getStarted": "Get Started",
+    "featuredInsights": "Featured Insights",
+    "weather": "Weather Forecast",
+    "cropAdvisor": "Crop Recommendations",
+    "marketPrices": "Market Prices",
+    "community": "Farmer Community",
+    "schemes": "Government Schemes"
+  },
+  "weather": {
+    "title": "Weather Forecast",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "nextDays": "Next 7 Days",
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "windSpeed": "Wind Speed",
+    "precipitation": "Precipitation",
+    "locationInput": "Enter your location",
+    "useCurrentLocation": "Use Current Location",
+    "searchLocation": "Search",
+    "celsius": "°C",
+    "fahrenheit": "°F",
+    "kmh": "km/h",
+    "mph": "mph",
+    "mm": "mm"
+  },
+  "crops": {
+    "title": "Crop Advisor",
+    "recommendation": "Crop Recommendations",
+    "cropType": "Crop Type",
+    "soilType": "Soil Type",
+    "region": "Region",
+    "season": "Season",
+    "calculateButton": "Get Recommendations",
+    "recommendedCrops": "Recommended Crops",
+    "recommendedFertilizers": "Recommended Fertilizers",
+    "irrigationTips": "Irrigation Tips",
+    "soilHealth": "Soil Health Tips"
+  },
+  "forum": {
+    "title": "Farmer Community",
+    "createPost": "Create Post",
+    "recentPosts": "Recent Posts",
+    "popularPosts": "Popular Posts",
+    "searchPosts": "Search posts...",
+    "filterByTopic": "Filter by Topic",
+    "filterByRegion": "Filter by Region",
+    "comments": "Comments",
+    "replies": "Replies",
+    "like": "Like",
+    "reply": "Reply",
+    "share": "Share",
+    "report": "Report",
+    "postTitle": "Post Title",
+    "postContent": "Post Content",
+    "uploadImage": "Upload Image",
+    "submit": "Submit"
+  },
+  "schemes": {
+    "title": "Government Schemes",
+    "searchSchemes": "Search schemes...",
+    "filterByCategory": "Filter by Category",
+    "filterByRegion": "Filter by Region",
+    "allSchemes": "All Schemes",
+    "loans": "Loans",
+    "subsidies": "Subsidies",
+    "insurance": "Insurance",
+    "training": "Training",
+    "viewDetails": "View Details",
+    "applyNow": "Apply Now",
+    "eligibility": "Eligibility",
+    "benefits": "Benefits",
+    "documents": "Required Documents",
+    "deadline": "Application Deadline"
+  },
+  "profile": {
+    "title": "My Profile",
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "language": "Language",
+    "updateProfile": "Update Profile",
+    "savedItems": "Saved Items",
+    "myPosts": "My Posts",
+    "settings": "Settings"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "helpCenter": "Help Center",
+    "copyright": "© 2025 Kisan Sahayak. All rights reserved."
+  }
+}
