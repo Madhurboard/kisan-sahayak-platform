@@ -24,7 +24,7 @@ import {
   X, 
   Sun, 
   Cloud, 
-  Seedling, 
+  Sprout, // Changed from Seedling to Sprout 
   BarChart3, 
   Users, 
   FileText, 
@@ -41,7 +41,7 @@ const Navbar = () => {
   const navItems = [
     { name: t('nav.home'), icon: <Sun size={18} />, path: '/' },
     { name: t('nav.weather'), icon: <Cloud size={18} />, path: '/weather' },
-    { name: t('nav.crops'), icon: <Seedling size={18} />, path: '/crops' },
+    { name: t('nav.crops'), icon: <Sprout size={18} />, path: '/crops' }, // Changed from Seedling to Sprout
     { name: t('nav.prices'), icon: <BarChart3 size={18} />, path: '/prices' },
     { name: t('nav.community'), icon: <Users size={18} />, path: '/community' },
     { name: t('nav.schemes'), icon: <FileText size={18} />, path: '/schemes' },

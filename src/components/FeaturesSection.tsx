@@ -1,7 +1,13 @@
 
 import { useTranslation } from 'react-i18next';
 import FeatureCard from './FeatureCard';
-import { Cloud, Seedling, BarChart3, Users, FileText } from 'lucide-react';
+import { 
+  Cloud, 
+  Sprout, // Using Sprout instead of Seedling
+  BarChart3, 
+  Users, 
+  FileText 
+} from 'lucide-react';
 
 const FeaturesSection = () => {
   const { t } = useTranslation();
@@ -17,7 +23,7 @@ const FeaturesSection = () => {
     {
       title: t('home.cropAdvisor'),
       description: 'Get personalized crop and fertilizer recommendations',
-      icon: <Seedling className="h-6 w-6 text-ks-green" />,
+      icon: <Sprout className="h-6 w-6 text-ks-green" />, // Changed from Seedling to Sprout
       link: '/crops',
       variant: 'accent' as const
     },
