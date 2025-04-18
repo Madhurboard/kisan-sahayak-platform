@@ -6,6 +6,15 @@ import { TrendingUp, TrendingDown, Search, Info } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar"; // Import Navbar component
+import Footer from "@/components/Footer"; // Import Footer component
+
+// Define the CropPrice type
+type CropPrice = {
+  name: string;
+  currentPrice: number;
+  previousPrice: number;
+  trend: "up" | "down" | "stable";
+};
 
 const MarketAdvisor = () => {
   const { t } = useTranslation();
@@ -29,9 +38,9 @@ const MarketAdvisor = () => {
   );
 
   return (
-    <div>
-      <Navbar /> {/* Add Navbar component */}
-      <div className="container mx-auto p-6 space-y-6">
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="container mx-auto p-6 space-y-6 flex-grow">
         <div className="animate-fade-in">
           <h1 className="text-4xl font-bold mb-2">{t('market.title')}</h1>
           <p className="text-muted-foreground mb-6">{t('market.description')}</p>
@@ -80,9 +89,9 @@ const MarketAdvisor = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 export default MarketAdvisor;
-
