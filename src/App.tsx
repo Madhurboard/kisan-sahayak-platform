@@ -13,7 +13,7 @@ import Schemes from "./pages/Schemes";
 import NotFound from "./pages/NotFound";
 import Market from "./pages/Market";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
