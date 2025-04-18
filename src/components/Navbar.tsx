@@ -124,7 +124,7 @@ const Navbar = () => {
                 <Link to="/login">{t('nav.login')}</Link>
               </Button>
               <Button asChild size="sm" className="hidden md:flex">
-                <Link to="/signup">{t('auth.signUp')}</Link>
+                <Link to="/signup">{t('Sign Up')}</Link>
               </Button>
             </div>
           )}

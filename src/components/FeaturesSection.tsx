@@ -25,7 +25,6 @@ const FeaturesSection = () => {
       description: 'Get personalized crop and fertilizer recommendations',
       icon: <Sprout className="h-6 w-6 text-ks-green" />, // Changed from Seedling to Sprout
       link: '/crops',
-      variant: 'accent' as const
     },
     {
       title: t('home.marketPrices'),
@@ -46,7 +45,7 @@ const FeaturesSection = () => {
       description: 'Discover government schemes and subsidies',
       icon: <FileText className="h-6 w-6 text-ks-green" />,
       link: '/schemes',
-      variant: 'muted' as const
+      variant: 'default' as const
     }
   ];
 
