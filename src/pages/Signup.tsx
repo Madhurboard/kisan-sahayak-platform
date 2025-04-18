@@ -11,6 +11,14 @@ import { toast } from '@/hooks/use-toast';
 import { Icons } from '@/components/ui/icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Loader2 } from 'lucide-react';
+import { FcGoogle } from 'react-icons/fc';
+
+export const Icon = {
+  spinner: Loader2,
+  google: FcGoogle,
+  // …other icons
+}
 
 const Signup = () => {
   const { t } = useTranslation();
@@ -19,6 +27,25 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleGoogleSignup = async () => {
+    setIsLoading(true);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: window.location.origin }
+      });
+      if (error) throw error;
+      // Supabase will redirect; no further action
+    } catch (err: any) {
+      toast({
+        variant: 'destructive',
+        title: 'Error',
+        description: err.message,
+      });
+      setIsLoading(false);
+    }
+  };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +97,18 @@ const Signup = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
+               <Button
+                variant="outline"
+                className="w-full mb-4 flex items-center justify-center"
+                onClick={handleGoogleSignup}
+                disabled={isLoading}
+              >
+                {isLoading
+                  ? <Icon.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  : <Icon.google  className="mr-2 h-5 w-5" />
+                }
+                {t('Sign Up With Google')}
+              </Button>
               <form onSubmit={handleSignup} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">{t('auth.email')}</Label>

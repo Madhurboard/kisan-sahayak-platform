@@ -1,19 +1,9 @@
-
-import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
-import { 
-  User, 
-  signInWithPopup, 
-  signOut, 
-  onAuthStateChanged, 
-  GoogleAuthProvider 
-} from 'firebase/auth';
-import { auth, googleProvider } from '../lib/firebase';
-import { toast } from '@/hooks/use-toast';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AuthContextType {
-  currentUser: User | null;
+  currentUser: any; // or Supabase User
   loading: boolean;
-  signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -28,56 +18,34 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+    // On initial load
+    supabase.auth.getSession().then(({ data }) => {
+      setCurrentUser(data.session?.user ?? null);
       setLoading(false);
     });
 
-    return unsubscribe;
+    // Listen to auth changes
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setCurrentUser(session?.user ?? null);
+    });
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
   }, []);
 
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      toast({
-        title: "Login successful",
-        description: "You've been logged in successfully",
-      });
-    } catch (error) {
-      console.error('Error signing in with Google:', error);
-      toast({
-        title: "Login failed",
-        description: "There was an error logging in",
-        variant: "destructive",
-      });
-    }
-  };
-
   const logout = async () => {
-    try {
-      await signOut(auth);
-      toast({
-        title: "Logged out",
-        description: "You've been logged out successfully",
-      });
-    } catch (error) {
-      console.error('Error signing out:', error);
-      toast({
-        title: "Logout failed",
-        description: "There was an error logging out",
-        variant: "destructive",
-      });
-    }
+    await supabase.auth.signOut();
+    setCurrentUser(null);
   };
 
-  const value = {
+  const value: AuthContextType = {
     currentUser,
     loading,
-    signInWithGoogle,
     logout,
   };
 

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -19,15 +18,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { 
-  Menu, 
-  X, 
-  Sun, 
-  Cloud, 
-  Sprout, // Changed from Seedling to Sprout 
-  BarChart3, 
-  Users, 
-  FileText, 
+import {
+  Menu,
+  X,
+  Sun,
+  Cloud,
+  Sprout,
+  BarChart3,
+  Users,
+  FileText,
   User,
   LogOut
 } from 'lucide-react';
@@ -39,9 +38,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: t('nav.home'), icon: <Sun size={18} />, path: '/' },
     { name: t('nav.weather'), icon: <Cloud size={18} />, path: '/weather' },
-    { name: t('nav.crops'), icon: <Sprout size={18} />, path: '/crops' }, // Changed from Seedling to Sprout
+    { name: t('nav.crops'), icon: <Sprout size={18} />, path: '/crops' },
     { name: t('nav.prices'), icon: <BarChart3 size={18} />, path: '/prices' },
     { name: t('nav.community'), icon: <Users size={18} />, path: '/community' },
     { name: t('nav.schemes'), icon: <FileText size={18} />, path: '/schemes' },
@@ -58,7 +56,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to={currentUser ? '/dashboard' : '/'} className="flex items-center gap-2">
           <Logo />
         </Link>
 
@@ -79,21 +77,28 @@ const Navbar = () => {
         {/* Auth and Language Controls */}
         <div className="flex items-center gap-4">
           <LanguageSwitcher />
-          
+
           {currentUser ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={currentUser.photoURL || ''} alt={currentUser.displayName || ''} />
-                    <AvatarFallback>{currentUser.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                    <AvatarImage
+                      src={currentUser?.user_metadata?.avatar_url || ''}
+                      alt={currentUser?.user_metadata?.full_name || ''}
+                    />
+                    <AvatarFallback>
+                      {currentUser?.user_metadata?.full_name?.charAt(0)
+                        || currentUser?.email?.charAt(0)
+                        || 'U'}
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{currentUser.displayName}</p>
+                    <p className="text-sm font-medium leading-none">{currentUser.user_metadata?.full_name}</p>
                     <p className="text-xs leading-none text-muted-foreground">
                       {currentUser.email}
                     </p>
@@ -119,7 +124,7 @@ const Navbar = () => {
                 <Link to="/login">{t('nav.login')}</Link>
               </Button>
               <Button asChild size="sm" className="hidden md:flex">
-                <Link to="/signup">{t('nav.signup')}</Link>
+                <Link to="/signup">{t('auth.signUp')}</Link>
               </Button>
             </div>
           )}

@@ -7,6 +7,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LoginForm from '@/components/LoginForm';
 import Logo from '@/components/Logo';
+import { Loader2 } from 'lucide-react';
+import { FcGoogle } from 'react-icons/fc';
+
+export const Icon = {
+  spinner: Loader2,
+  google: FcGoogle,
+  // …other icons
+}
 
 const Login = () => {
   const { t } = useTranslation();
@@ -16,7 +24,7 @@ const Login = () => {
   // Redirect if already logged in
   useEffect(() => {
     if (currentUser) {
-      navigate('/');
+      navigate('/dashboard'); // Redirect to dashboard if user is already logged in
     }
   }, [currentUser, navigate]);
 

@@ -13,6 +13,9 @@ import Schemes from "./pages/Schemes";
 import NotFound from "./pages/NotFound";
 import Market from "./pages/Market";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Dashboard from "./pages/dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 const queryClient = new QueryClient();
 
@@ -24,17 +27,27 @@ const App = () => {
           <Toaster />
           <Sonner />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/weather" element={<Weather />} />
-            <Route path="/crops" element={<Crops />} />
-            <Route path="/prices" element={<Market />} />
-            <Route path="/market" element={<Market />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/schemes" element={<Schemes />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+  <Route path="/" element={<Index />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/signup" element={<Signup />} />
+
+  <Route
+    path="/dashboard"
+    element={
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    }
+  />
+
+  <Route path="/weather" element={<Weather />} />
+  <Route path="/crops" element={<Crops />} />
+  <Route path="/prices" element={<Market />} />
+  <Route path="/market" element={<Market />} />
+  <Route path="/community" element={<Community />} />
+  <Route path="/schemes" element={<Schemes />} />
+  <Route path="*" element={<NotFound />} />
+</Routes>
         </TooltipProvider>
       </BrowserRouter>
     </QueryClientProvider>

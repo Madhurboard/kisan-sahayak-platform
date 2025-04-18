@@ -1,89 +1,103 @@
-
-// This file is listed as read-only, but we need to make a change to fix the error
-// Since we can't modify it directly, we'll need to create a custom version
-
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { GithubIcon } from 'lucide-react'; // Using GithubIcon as a replacement for Google
+import { Loader2 } from 'lucide-react';
+import { FcGoogle } from 'react-icons/fc';
 
 const LoginForm = () => {
   const { t } = useTranslation();
-  const { signInWithGoogle, currentUser } = useAuth();
-  const { toast } = useToast();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Email/password login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
-      // Using the currentUser for now since login method is not available
-      // This is a placeholder - in a real app, we'd call an actual login function
-      console.log("Login attempt with:", email, password);
-      toast({
-        title: "Info",
-        description: "Direct email/password login is not implemented yet.",
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
       });
-    } catch (error) {
+
+      if (error) throw error;
+      if (data.session) {
+        toast({ title: t('auth.success'), description: t('auth.loggedIn') });
+        navigate('/dashboard'); 
+      }
+    } catch (err: any) {
       toast({
-        variant: "destructive",
-        title: "Failed to login",
-        description: "Please check your credentials and try again.",
+        variant: 'destructive',
+        title: t('auth.loginFailed'),
+        description: err.message
       });
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
+
+  // Google OAuth login
   const handleGoogleLogin = async () => {
     setIsLoading(true);
-    
+  
     try {
-      await signInWithGoogle();
-      toast({
-        title: "Success!",
-        description: "You've been logged in with Google successfully.",
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${import.meta.env.VITE_APP_URL}/dashboard`,
+        },
       });
-      navigate('/');
-    } catch (error) {
+  
+      if (error) {
+        throw error;
+      }
+      // Supabase will handle the redirect automatically
+    } catch (err: any) {
       toast({
-        variant: "destructive",
-        title: "Failed to login with Google",
-        description: "An error occurred during Google authentication.",
+        variant: 'destructive',
+        title: t('auth.googleLoginFailed'),
+        description: err.message,
       });
-      console.error(error);
-    } finally {
       setIsLoading(false);
     }
   };
+  
+
 
   return (
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">{t('auth.login')}</CardTitle>
         <CardDescription>
-          Enter your credentials to access your account
+          {t('Enter Credentials')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">{t('auth.email')}</Label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder="your.email@example.com" 
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -92,30 +106,29 @@ const LoginForm = () => {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="password">{t('auth.password')}</Label>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-sm text-ks-green hover:underline"
               >
                 {t('auth.forgotPassword')}
               </a>
             </div>
-            <Input 
-              id="password" 
-              type="password" 
+            <Input
+              id="password"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          <Button 
-            type="submit" 
-            className="w-full" 
-            disabled={isLoading}
-          >
-            {isLoading ? t('auth.loggingIn') : t('auth.login')}
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading
+              ? <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              : t('auth.login')
+            }
           </Button>
         </form>
-        
+
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
@@ -126,30 +139,34 @@ const LoginForm = () => {
             </span>
           </div>
         </div>
-        
-        <Button 
-          variant="outline" 
-          className="w-full" 
+
+        <Button
+          variant="outline"
+          className="w-full flex items-center justify-center"
           onClick={handleGoogleLogin}
           disabled={isLoading}
         >
-          <GithubIcon className="mr-2 h-4 w-4" /> {/* Using GithubIcon instead of Google */}
-          {t('auth.continueWithGoogle')}
+          {isLoading
+            ? <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            : <FcGoogle className="mr-2 h-4 w-4" />
+          }
+          {t('Continue With Google')}
         </Button>
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-muted-foreground">
-          {t('auth.dontHaveAccount')} {' '}
-          <a 
-            href="/signup" 
+          {t('auth.dontHaveAccount')}{' '}
+          <a
+            href="/signup"
             className="text-ks-green hover:underline"
           >
-            {t('auth.signUp')}
+            {t('Sign Up')}
           </a>
         </p>
       </CardFooter>
     </Card>
-  );
+);
+
 };
 
 export default LoginForm;
