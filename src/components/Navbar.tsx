@@ -105,12 +105,13 @@ const Navbar = () => {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link to="/profile" className="flex items-center w-full">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>{t('nav.profile')}</span>
-                  </Link>
-                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+  <Link to="/profile" className="flex items-center w-full">
+    <User className="mr-2 h-4 w-4" />
+    <span>{t('nav.profile')}</span>
+  </Link>
+</DropdownMenuItem>
+
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />

@@ -14,6 +14,8 @@ import NotFound from "./pages/NotFound";
 import Market from "./pages/Market";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Dashboard from "./pages/dashboard";
+import Profile from '@/pages/Profile';
+
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
@@ -36,9 +38,19 @@ const App = () => {
     element={
       <ProtectedRoute>
         <Dashboard />
+        
       </ProtectedRoute>
     }
   />
+  <Route
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
+
 
   <Route path="/weather" element={<Weather />} />
   <Route path="/crops" element={<Crops />} />
