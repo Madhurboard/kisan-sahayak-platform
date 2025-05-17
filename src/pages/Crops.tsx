@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from '@/components/Navbar';
@@ -6,106 +5,13 @@ import Footer from '@/components/Footer';
 import CropRecommendationCard from '@/components/CropRecommendationCard';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Leaf, AlertCircle } from 'lucide-react';
+import { fetchUnsplashImage } from '@/lib/fetchUnsplashImage';
 
-// Mock data for demonstration
-const mockCropRecommendations = [
-  {
-    cropName: 'Rice',
-    suitability: 'high' as const,
-    growthDuration: '120-150 days',
-    waterRequirements: 'high' as const,
-    temperature: '20-35°C',
-    seasonality: ['Kharif'],
-    regions: ['Punjab', 'Haryana', 'Uttar Pradesh'],
-    imageUrl: 'https://images.unsplash.com/photo-1602989106211-81de671c23a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  },
-  {
-    cropName: 'Wheat',
-    suitability: 'high' as const,
-    growthDuration: '100-120 days',
-    waterRequirements: 'medium' as const,
-    temperature: '15-25°C',
-    seasonality: ['Rabi'],
-    regions: ['Punjab', 'Haryana', 'Uttar Pradesh', 'Madhya Pradesh'],
-    imageUrl: 'https://images.unsplash.com/photo-1529511582893-2d7e684dd128?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  },
-  {
-    cropName: 'Cotton',
-    suitability: 'medium' as const,
-    growthDuration: '150-180 days',
-    waterRequirements: 'medium' as const,
-    temperature: '20-30°C',
-    seasonality: ['Kharif'],
-    regions: ['Gujarat', 'Maharashtra', 'Punjab'],
-    imageUrl: 'https://images.unsplash.com/photo-1502395809857-fd80069897d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  },
-  {
-    cropName: 'Sugarcane',
-    suitability: 'high' as const,
-    growthDuration: '10-12 months',
-    waterRequirements: 'high' as const,
-    temperature: '20-35°C',
-    seasonality: ['Year-round'],
-    regions: ['Uttar Pradesh', 'Maharashtra', 'Karnataka'],
-    imageUrl: 'https://images.unsplash.com/photo-1637335556827-bf5923d77f33?q=80&w=1033&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  },
-  {
-    cropName: 'Maize',
-    suitability: 'medium' as const,
-    growthDuration: '90-120 days',
-    waterRequirements: 'medium' as const,
-    temperature: '20-30°C',
-    seasonality: ['Kharif', 'Rabi'],
-    regions: ['Karnataka', 'Andhra Pradesh', 'Telangana'],
-    imageUrl: 'https://images.unsplash.com/photo-1693672843048-82d7c1a20974?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  },
-  {
-    cropName: 'Soybean',
-    suitability: 'low' as const,
-    growthDuration: '90-120 days',
-    waterRequirements: 'low' as const,
-    temperature: '20-30°C',
-    seasonality: ['Kharif'],
-    regions: ['Madhya Pradesh', 'Maharashtra', 'Rajasthan'],
-    imageUrl: 'https://images.unsplash.com/photo-1562702076-c719c8796b8d?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-  }
-];
-
-const mockFertilizers = [
-  {
-    name: 'Urea',
-    suitability: 'high' as const,
-    crops: ['Rice', 'Wheat', 'Maize'],
-    nutrients: 'High Nitrogen (46%)',
-    application: 'Before sowing or during growth',
-    dosage: '100-150 kg/ha',
-    benefits: 'Promotes leaf growth and vegetation'
-  },
-  {
-    name: 'DAP',
-    suitability: 'high' as const,
-    crops: ['Wheat', 'Rice', 'Cotton'],
-    nutrients: 'Nitrogen (18%) and Phosphorus (46%)',
-    application: 'During sowing',
-    dosage: '100-125 kg/ha',
-    benefits: 'Promotes root development and flowering'
-  },
-  {
-    name: 'NPK Complex',
-    suitability: 'medium' as const,
-    crops: ['Sugarcane', 'Vegetables', 'Fruits'],
-    nutrients: 'Balanced Nitrogen, Phosphorus, Potassium',
-    application: 'Multiple stages',
-    dosage: '150-200 kg/ha',
-    benefits: 'Overall balanced nutrition'
-  }
-];
 
 const Crops = () => {
   const { t } = useTranslation();
@@ -114,15 +20,42 @@ const Crops = () => {
   const [season, setSeason] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasRecommendations, setHasRecommendations] = useState(false);
-  
-  const handleGetRecommendations = () => {
+
+  const [filteredCrops, setFilteredCrops] = useState([]);
+  const [filteredFertilizers, setFilteredFertilizers] = useState([]);
+  const [irrigationTips, setIrrigationTips] = useState([]);
+
+  const handleGetRecommendations = async () => {
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+    setHasRecommendations(false);
+
+    try {
+      const response = await fetch('https://hdyorvkiqsiaamhrgjeg.functions.supabase.co/recommend-crops', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkeW9ydmtpcXNpYWFtaHJnamVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ5ODQwMDcsImV4cCI6MjA2MDU2MDAwN30.0LMn_62OPYkdZhCIfisQdDrva4GfHLKN32Lq91dyC6A',
+        },
+        body: JSON.stringify({ soilType, region, season }),
+      });
+
+      const data = await response.json();
+      const cropsWithImages = await Promise.all(
+  (data.crops || []).map(async (crop: any) => {
+    const imageUrl = await fetchUnsplashImage(crop.cropName);
+    return { ...crop, imageUrl };
+  })
+);
+setFilteredCrops(cropsWithImages);
+
+      setFilteredFertilizers(data.fertilizers || []);
+      setIrrigationTips(data.irrigationTips || []);
       setHasRecommendations(true);
+    } catch (error) {
+      console.error('Error fetching AI recommendations:', error);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -132,7 +65,7 @@ const Crops = () => {
         <div className="bg-gradient-to-b from-ks-light-green/30 to-background py-12">
           <div className="container">
             <h1 className="text-3xl font-bold mb-4">{t('crops.title')}</h1>
-            
+
             <Card className="mb-8">
               <CardHeader>
                 <CardTitle>{t('crops.recommendation')}</CardTitle>
@@ -158,7 +91,7 @@ const Crops = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="region">{t('crops.region')}</Label>
                     <Select value={region} onValueChange={setRegion}>
@@ -175,7 +108,7 @@ const Crops = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="season">{t('crops.season')}</Label>
                     <Select value={season} onValueChange={setSeason}>
@@ -207,20 +140,7 @@ const Crops = () => {
                 </Button>
               </CardFooter>
             </Card>
-            
-            {!hasRecommendations && !isLoading && (
-              <div className="text-center py-12">
-                <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-muted mb-6">
-                  <Leaf className="h-10 w-10 text-ks-green" />
-                </div>
-                <h2 className="text-2xl font-semibold mb-3">Enter your details to get recommendations</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Our smart system will analyze your soil type, region, and season to recommend 
-                  the most suitable crops and fertilizers for optimal yield.
-                </p>
-              </div>
-            )}
-            
+
             {hasRecommendations && (
               <Tabs defaultValue="crops" className="w-full">
                 <TabsList className="mb-6">
@@ -228,95 +148,56 @@ const Crops = () => {
                   <TabsTrigger value="fertilizers">{t('crops.recommendedFertilizers')}</TabsTrigger>
                   <TabsTrigger value="tips">{t('crops.irrigationTips')}</TabsTrigger>
                 </TabsList>
-                
+
                 <TabsContent value="crops" className="animate-fade-in">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    {mockCropRecommendations.map((crop, index) => (
+                    {filteredCrops.map((crop, index) => (
                       <CropRecommendationCard 
-                        key={index}
-                        cropName={crop.cropName}
-                        suitability={crop.suitability}
-                        growthDuration={crop.growthDuration}
-                        waterRequirements={crop.waterRequirements}
-                        temperature={crop.temperature}
-                        seasonality={crop.seasonality}
-                        regions={crop.regions}
-                        imageUrl={crop.imageUrl}
-                      />
+  key={index}
+  cropName={crop.cropName}
+  suitability={crop.suitability}
+  growthDuration={crop.growthDuration}
+  waterRequirements={crop.waterRequirements}
+  temperature={crop.temperature}
+  seasonality={crop.seasonality}
+  regions={crop.regions}
+  imageUrl={crop.imageUrl}
+/>
+
                     ))}
                   </div>
                 </TabsContent>
-                
+
                 <TabsContent value="fertilizers" className="animate-fade-in">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    {mockFertilizers.map((fertilizer, index) => (
+                    {filteredFertilizers.map((fertilizer, index) => (
                       <Card key={index} className="hover-scale card-shadow">
                         <CardHeader>
                           <CardTitle>{fertilizer.name}</CardTitle>
-                          <CardDescription>Suitability: {fertilizer.suitability}</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-3">
                           <p><span className="font-medium">Nutrients:</span> {fertilizer.nutrients}</p>
-                          <p><span className="font-medium">Recommended for:</span> {fertilizer.crops.join(', ')}</p>
+                          <p><span className="font-medium">For Crops:</span> {fertilizer.forCrops?.join(', ')}</p>
                           <p><span className="font-medium">Application:</span> {fertilizer.application}</p>
-                          <p><span className="font-medium">Dosage:</span> {fertilizer.dosage}</p>
-                          <p><span className="font-medium">Benefits:</span> {fertilizer.benefits}</p>
                         </CardContent>
                       </Card>
                     ))}
                   </div>
                 </TabsContent>
-                
+
                 <TabsContent value="tips" className="animate-fade-in">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>{t('crops.irrigationTips')}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p>Based on your soil type and region, here are some irrigation recommendations:</p>
-                        <ul className="list-disc list-inside space-y-2">
-                          <li>Apply water in early morning or late evening to reduce evaporation</li>
-                          <li>For clay soils, water less frequently but more deeply</li>
-                          <li>Consider drip irrigation to reduce water usage by up to 60%</li>
-                          <li>Monitor soil moisture regularly using moisture sensors</li>
-                          <li>Adjust irrigation based on rainfall patterns and crop growth stage</li>
-                        </ul>
-                        
-                        <Alert>
-                          <AlertCircle className="h-4 w-4" />
-                          <AlertTitle>Water conservation tip</AlertTitle>
-                          <AlertDescription>
-                            Mulching around plants can reduce water evaporation by up to 70%
-                          </AlertDescription>
-                        </Alert>
-                      </CardContent>
-                    </Card>
-                    
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>{t('crops.soilHealth')}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <p>Improve your soil health with these recommendations:</p>
-                        <ul className="list-disc list-inside space-y-2">
-                          <li>Add organic matter like compost to improve soil structure</li>
-                          <li>Practice crop rotation to prevent nutrient depletion</li>
-                          <li>Consider cover crops during off-seasons to prevent erosion</li>
-                          <li>Test soil pH annually and adjust as needed</li>
-                          <li>Minimize tillage to preserve soil structure and beneficial organisms</li>
-                        </ul>
-                        
-                        <Alert>
-                          <AlertCircle className="h-4 w-4" />
-                          <AlertTitle>Soil health tip</AlertTitle>
-                          <AlertDescription>
-                            Vermicomposting can significantly improve soil fertility and structure
-                          </AlertDescription>
-                        </Alert>
-                      </CardContent>
-                    </Card>
-                  </div>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{t('crops.irrigationTips')}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc pl-6 space-y-2">
+                        {irrigationTips.map((tip, index) => (
+                          <li key={index}>{tip}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </TabsContent>
               </Tabs>
             )}
