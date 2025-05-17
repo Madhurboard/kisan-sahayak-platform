@@ -82,6 +82,7 @@ setFilteredCrops(cropsWithImages);
                         <SelectValue placeholder="Select soil type" />
                       </SelectTrigger>
                       <SelectContent>
+                        <SelectItem value="black">Black Soil</SelectItem>
                         <SelectItem value="sandy">Sandy Soil</SelectItem>
                         <SelectItem value="clay">Clay Soil</SelectItem>
                         <SelectItem value="loamy">Loamy Soil</SelectItem>
