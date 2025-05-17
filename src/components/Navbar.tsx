@@ -81,19 +81,21 @@ const Navbar = () => {
           {currentUser ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage
-                      src={currentUser?.user_metadata?.avatar_url || ''}
-                      alt={currentUser?.user_metadata?.full_name || ''}
-                    />
-                    <AvatarFallback>
-                      {currentUser?.user_metadata?.full_name?.charAt(0)
-                        || currentUser?.email?.charAt(0)
-                        || 'U'}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0">
+  <Avatar className="h-10 w-10 border-2 border-green-500 p-0.5">
+    <AvatarImage
+      src={currentUser?.user_metadata?.avatar_url || ''}
+      alt={currentUser?.user_metadata?.full_name || ''}
+      className="rounded-full"
+    />
+    <AvatarFallback className="bg-muted text-foreground">
+      {currentUser?.user_metadata?.full_name?.charAt(0)
+        || currentUser?.email?.charAt(0)
+        || 'U'}
+    </AvatarFallback>
+  </Avatar>
+</Button>
+
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
